@@ -20,7 +20,7 @@ public class SearchEmployeeSteps extends CommonMethods {
     }
     @Then("verify the employee")
     public void verify_the_employee() {
-        System.out.println("search successfully.");
+       takeScreenshot("SearchSuccess","searchFile");
     }
     @When("user enter the name of this employee")
     public void user_enter_the_name_of_this_employee() {
