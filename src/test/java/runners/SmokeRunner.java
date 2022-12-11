@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features/",
         glue = "steps",
         dryRun = false,
-        tags = "@name or @id or @test2",
+        tags = "@validLogin or @invalidLogin",
         monochrome = true,
         plugin = {"pretty"}
 

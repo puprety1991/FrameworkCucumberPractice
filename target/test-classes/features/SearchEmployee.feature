@@ -1,4 +1,4 @@
-Feature: Search Employee Functionality
+Feature: US - 104 -  Search Employee Functionality
 
   Background:
     When user enters valid username and valid password

@@ -31,10 +31,9 @@ public class LoginSteps extends CommonMethods {
     @Then("user is successfully logged in")
     public void user_is_successfully_logged_in() {
         if(login.welcomeMsg.isDisplayed()){
-            System.out.println("Test case is Passed.");
-        }else{
-            System.out.println("Test case is Failed.");
+            takeScreenshot("ValidCredentials","validCredentials");
         }
+
     }
     @When("user enters invalid username and password")
     public void user_enters_invalid_username_and_password() {
@@ -45,7 +44,7 @@ public class LoginSteps extends CommonMethods {
     @Then("verify the error message")
     public void verify_the_error_message() {
         softAssertionEquals(login.errorMessage.getText(),ConfigReader.getPropertyValue("expectedErrorMessage"));
-        screenShot();
+        takeScreenshot("InvalidCredentials","InvalidCredentials");
     }
 }
 
