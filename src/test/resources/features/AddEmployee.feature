@@ -29,5 +29,9 @@ Feature: US 103 - Adding new employees
       |Naresh     |Sangroula |
       |balen      |Shah      |
 
+  @excel
+  Scenario: Adding multiple employees using excel file
+    When user add multiple employees from excel using "EmployeeData" and verify it
+
 
 

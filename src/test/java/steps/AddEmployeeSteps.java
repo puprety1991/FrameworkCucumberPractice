@@ -3,6 +3,12 @@ package steps;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import utils.CommonMethods;
+import utils.Constants;
+import utils.ExcelReader;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class AddEmployeeSteps extends CommonMethods {
     @When("click on PIM option")
@@ -37,4 +43,33 @@ public class AddEmployeeSteps extends CommonMethods {
         sendText(addEmployee.userNameField, firstName);
         sendText(addEmployee.lastNameField, lastName);
     }
+    @When("user add multiple employees from excel using {string} and verify it")
+    public void user_add_multiple_employees_from_excel_using_and_verify_it(String sheetName) throws InterruptedException {
+        List<Map<String, String>> empFromExcel = ExcelReader.excelListIntoMap(Constants.TESTDATA_FILEPATH, sheetName);
+        Iterator<Map<String, String>> iterator = empFromExcel.iterator();
+        while(iterator.hasNext()){
+            Map<String, String> individualEmployee = iterator.next();
+            sendText(addEmployee.userNameField,individualEmployee.get("firstName"));
+            sendText(addEmployee.middleNameField,individualEmployee.get("middleName"));
+            sendText(addEmployee.lastNameField,individualEmployee.get("lastName"));
+            sendText(addEmployee.photograph,individualEmployee.get("photograph"));
+            if(!addEmployee.checkBox.isSelected()){
+                click(addEmployee.checkBox);
+            }
+            sendText(addEmployee.createUserNameField, individualEmployee.get("username"));
+            sendText(addEmployee.createPasswordField, individualEmployee.get("password"));
+            sendText(addEmployee.confirmPasswordField,individualEmployee.get("confirmPassword"));
+            click(addEmployee.saveButton);
+
+            Thread.sleep(2000);
+
+            click(addEmployee.addEmployeeOption);
+            Thread.sleep(2000);
+
+        }
+
+
+
+    }
+
 }
